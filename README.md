@@ -7,4 +7,4 @@
 - Đỗ Vũ Hưng    - 20110499
 - Định Quân  - 20110043
 
-
+link video : https://drive.google.com/drive/folders/1BvBhw59NpnVoV3PGAxgstgiNPDPyS55w?usp=sharing
