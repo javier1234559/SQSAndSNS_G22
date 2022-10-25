@@ -1,6 +1,6 @@
 
 
-# Đề tài: Tìm hiểu Amazon LightSail và viết ứng dụng minh họa
+# Đề tài: Tìm hiểu Amazon SQS , SNS và viết ứng dụng minh họa
 
 ## Nhóm 22
 - Nguyễn Bùi Minh Nhật - 20161347
