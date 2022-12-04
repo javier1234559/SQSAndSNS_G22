@@ -1,28 +1,47 @@
 from flask import Flask, render_template, request , flash
-import boto3
+import boto3 , os
 from werkzeug.utils import secure_filename
+from configparser import ConfigParser
 
+#Read config.ini file
+file = 'config.ini'
+config = ConfigParser()
+config.read(file)
+config = config['default']
+
+# Create a client
+s3 = boto3.client('s3',aws_access_key_id= config['aws_access_key_id'],
+                    aws_secret_access_key= config['aws_secret_access_key'],
+                    aws_session_token=config['aws_session_token']
+                    )
+# Name bucket want to connect
+BUCKET_NAME='s3-to-email'  
+
+# Check if connect or not 
+response = s3.list_buckets()     
+for bucket in response['Buckets']:
+    if bucket['Name'] == BUCKET_NAME:
+        print("Found successfully !")
+        print('Bucket had found is : '+ bucket['Name'])
+print(os.path.join( "UploadtoS3", "file.txt"))
+
+# app flask begin
 app = Flask(__name__)
 
-
-s3 = boto3.client('s3',
-                    aws_access_key_id="ASIAV5W6YQ2GUAQCQVR3",
-                    aws_secret_access_key= "YrVrhkhHCmbC2rv7L3YysHGp/rgc455AriKosv9z",
-                    aws_session_token="FwoGZXIvYXdzENz//////////wEaDMHBr6v51A0VfnjkXyLPAd2eiUjwZHc5iG1fiOYQoDX6mn0WCjNO4Bmm+fifFi3D2Gj7RmCBiouFvus7zSl6FApIO/0NzuI7GQzNfpNOiutiZeGNosfY6Q5HP7ZgqHisa1T5SH9rpfbSG80bh/YWTRCt5VPbiMteCQdJszmnV0+2cyJTqCozPSPoy5eGZUHcVlz+SjnDT3yql2gP5YHscALwp4xkhSgV5IvsPzt1Y/GOn2KDe2rIUfyL/j8f9UCqNqlDQxZ+BANG+j9Sq6NGrc3oXJT8SOBNtVyT8ghAtCiWg/2bBjItpkJXjkR2kvIplayIBYli/2sHMrdr7Rt5rCU0RewRauQyfS4GgeMi8PHUUYj2"
-                     )
-
-response = s3.list_buckets()
-
-for bucket in response['Buckets']:
-    print(bucket['Name'])
-    print(bucket)
-
-BUCKET_NAME='pre1-my-bucket'
+def SendToS3(bucketname,filename, key):
+    try:
+        s3.upload_file(
+                        Bucket = bucketname,
+                        Filename=filename,
+                        Key = key
+                        )
+        return True                        
+    except :                    
+        return False
 
 @app.route('/')  
 def home():
     return render_template("file_upload_to_s3.html")
-
 
 @app.route('/upload',methods=['post'])
 def upload():
@@ -30,20 +49,18 @@ def upload():
         img = request.files['file']
         if img:
                 filename = secure_filename(img.filename)
-                img.save(filename)
-                s3.upload_file(
-                    Bucket = BUCKET_NAME,
-                    Filename=filename,
-                    Key = filename
-                )
-                msg = "Upload Done ! "
+                img.save(os.path.join('UploadtoS3',filename)) # save at UploadtoS3 folder
+                path = os.path.join('UploadtoS3',filename)
+                check =  SendToS3(BUCKET_NAME,path,filename)
+
+                if check :
+                    msg = "Upload Done ! "
+                else :
+                    msg = "Sorry Upload to S3 is not success"
         else :
-             flash('No file path')
+            flash('No file path')
 
     return render_template("file_upload_to_s3.html",msg =msg)
-
-
-
 
 if __name__ == "__main__":
     
