@@ -79,7 +79,7 @@ def handle_modify(record):
 	newemail = newImage['Email']['S']
 
 	#3c. Check for change
-	if oldScore != newScore:
+	if oldemail != newemail:
 		message = 'Da thay doi email tu email =  '+ oldemail +' thanh email = ' + newemail
 		publish_msg(message)
 		print(message)
