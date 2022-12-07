@@ -48,7 +48,7 @@ def upload():
     if request.method == 'POST':
         img = request.files['file']
         if img:
-                filename = secure_filename(img.filename)
+                filename = secure_filename(img.filename) # str html.png
                 img.save(os.path.join('UploadtoS3',filename)) # save at UploadtoS3 folder
                 path = os.path.join('UploadtoS3',filename)
                 check =  SendToS3(BUCKET_NAME,path,filename)
