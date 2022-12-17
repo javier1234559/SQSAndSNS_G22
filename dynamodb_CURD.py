@@ -12,7 +12,9 @@ config.read(file)
 config = config['default']
 
 # Create a resource 
-dynamodb = boto3.resource('dynamodb',aws_access_key_id= config['aws_access_key_id'],
+dynamodb = boto3.resource('dynamodb',
+                    region_name='us-east-1',
+                    aws_access_key_id= config['aws_access_key_id'],
                     aws_secret_access_key= config['aws_secret_access_key'],
                     aws_session_token=config['aws_session_token']
                     )
