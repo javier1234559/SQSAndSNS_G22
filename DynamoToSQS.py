@@ -12,7 +12,6 @@ def publish_msg(message):
         )
 	return response
 
-
 def lambda_handler(event, context):
 	print('------------------------')
 	print(event)
@@ -33,7 +32,6 @@ def lambda_handler(event, context):
 		print('------------------------')
 		return "Error"
 
-
 def handle_insert(record):
 	print("Handling INSERT Event")
 	
@@ -49,8 +47,6 @@ def handle_insert(record):
 	print(message)
 
 	print("Done handling INSERT Event")
-
-
 
 def handle_remove(record):
 	print("Handling REMOVE Event")

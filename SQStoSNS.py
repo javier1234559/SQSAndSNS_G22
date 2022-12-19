@@ -11,7 +11,6 @@ def send_request(body):
     )
     print('(Debug)Gui thanh cong tn : ' + body)
     
- 
 def lambda_handler(event, context):
     #batch_processes=[]
     for record in event['Records']:

@@ -19,13 +19,10 @@ dynamodb = boto3.resource('dynamodb',
                     aws_session_token=config['aws_session_token']
                     )
 #print(list(dynamodb.tables.all()))
-
 #FLask app begin
-
 NAMETABLE = 'TaiKhoan'
 
 app = Flask(__name__)
-
 
 @app.route('/')  
 @app.route('/home')  

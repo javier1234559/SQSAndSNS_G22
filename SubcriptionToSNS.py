@@ -20,9 +20,6 @@ sns = boto3.client('sns',
 
 TOPPIC_NAME= 'demoSQStoSNS'
 TOPIC_ARN='arn:aws:sns:us-east-1:407415326349:demoSQStoSNS'
-ENDPOINT = 'nguyenhue1234559@gmail.com'
-LIST_SUBSCRIBER = []
-message = "Day la tin nhan muon publish"
 
 def checkConfirm(email):
     subscriptions = sns.list_subscriptions_by_topic(TopicArn=TOPIC_ARN)
@@ -36,7 +33,6 @@ def Subscribe(email):
     subscription_arn = response["SubscriptionArn"]
     if subscription_arn :
         print("Subscribe successfully !")
-
 
 def PublishMsgToTopic(message):
     if message : 
@@ -53,6 +49,9 @@ def PublishMsgToTopic(message):
 def UnSubscribe(email):
     subscriptions = sns.list_subscriptions_by_topic(TopicArn=TOPIC_ARN)
     for sub in subscriptions['Subscriptions']:
-        if ENDPOINT in sub['Endpoint'] and 'arn:aws' in sub['SubscriptionArn']:
+        if email in sub['Endpoint'] and 'arn:aws' in sub['SubscriptionArn']:
             reponse = sns.unsubscribe(SubscriptionArn= sub['SubscriptionArn'])
             print("UnSubscribe successfully !")
+
+#ENDPOINT = 'nguyenhue1234559@gmail.com'
+#LIST_SUBSCRIBER = []
