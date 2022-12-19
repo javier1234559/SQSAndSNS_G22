@@ -2,7 +2,7 @@ from flask import Flask, render_template, request , flash , redirect
 import boto3 
 # from werkzeug.utils import secure_filename
 from configparser import ConfigParser
-
+from SubcriptionToSNS import Subscribe  ,PublishMsgToTopic , UnSubscribe
 from model import Items ,DynamoDb , Account  #thu vien tu tao
 
 #Read config.ini file
@@ -18,13 +18,11 @@ dynamodb = boto3.resource('dynamodb',
                     aws_secret_access_key= config['aws_secret_access_key'],
                     aws_session_token=config['aws_session_token']
                     )
-print(list(dynamodb.tables.all()))
+#print(list(dynamodb.tables.all()))
 
 #FLask app begin
 
 NAMETABLE = 'TaiKhoan'
-
-
 
 app = Flask(__name__)
 
@@ -67,15 +65,25 @@ def delete(email,name):
             name = name,
             email= email)
     check = table.deleteAccount()
+    UnSubscribe(email)
     if check :
         return redirect('/home')
     else:
         msg ="Xóa không thành công !"
         return render_template("loginform.html", msg = msg)
 
+@app.route('/send/<email>&<name>',methods=['post','get'])
+def send(email,name):
+    Subscribe(email)
+    return redirect('/home')
+
+@app.route('/publish', methods=['GET', 'POST'])
+def publish():
+    textarea = request.form.get('textarea')
+    print(textarea)
+    PublishMsgToTopic(textarea)
+    return redirect('/home')
 
 if __name__ == "__main__":
-    
     app.run(host='0.0.0.0',port=5000)
-
 

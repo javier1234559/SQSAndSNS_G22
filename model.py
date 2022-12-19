@@ -1,4 +1,5 @@
 import json
+from SubcriptionToSNS import checkConfirm 
 
 class Items :
     def __init__(self, dynamodb ,NAMETABLE):
@@ -29,7 +30,10 @@ class DynamoDb :
         LISTACCOUNT = []
         list = Items(self.dynamodb,self.nametable)
         for obj in list.getlistItemNames() :
-            acc = Account( obj['Name'],obj['Email'])
+            status = ""
+            if checkConfirm(obj['Email']) == True:
+                status = r'style=color:green'
+            acc = Account( obj['Name'],obj['Email'],status)
             LISTACCOUNT.append(acc)
         return LISTACCOUNT
 
@@ -78,6 +82,7 @@ class DynamoDb :
             return None
 
 class Account :
-    def __init__(self, name, email):
+    def __init__(self, name, email, status):
         self.name = name
         self.email = email
+        self.status = status
