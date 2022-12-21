@@ -52,6 +52,14 @@ vi config.ini
 >Copy Accesskey của Lab Learner và bấm lưu 
 
 ```
+[default]
+aws_access_key_id=ASIAV5W6YQ2GVOPR3ZWH
+aws_secret_access_key=+w2/3AYrPMlDhJdUPiz4RxyE1iGFuEYG3djG/ZWL
+aws_session_token=FwoGZXIvYXdzEGAaDLvaq083zIn57bk3EiLPAfrn0+v8iCEOux0VU+xtrooSO/Hue7132WKT5ruQqHCgilbAq84fWIkGssPCPAP/9TdPQdk33KsLtrZzT+ByxJUVz1SnDsvrmM+YWenSm5mc37gVNgkxHl71VL5dDOeRL5KJVPunf7XTbMzCoVIU5SfoOeh3ZIYukFYdcb18IsWsZOlNrfTCPeCXtN4OxTxaaSrPcp9KUU2mQ1NwkFBKcN6GyKckE3U+t8ujx6UkZ0aR3v+uyjZCVXblMCUlU0R3Tmpjox8USK49rXvtBGPowyiz3IqdBjItebFl9J4fLcIIfw6Aq+tg58zJzUFqW+9lgJ/HTyvjRdTgEdyFTIxny1el1CRD
+
+```
+
+```
 :wq
 ```
 Khởi chạy ứng dụng
