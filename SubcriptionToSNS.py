@@ -20,6 +20,9 @@ sns = boto3.client('sns',
 
 TOPPIC_NAME= 'demoSQStoSNS'
 TOPIC_ARN='arn:aws:sns:us-east-1:407415326349:demoSQStoSNS'
+# TOPPIC_NAME = 'newtopicsns'
+# TOPIC_ARN = 'arn:aws:sns:us-east-1:407415326349:newtopicsns'
+
 
 def checkConfirm(email):
     subscriptions = sns.list_subscriptions_by_topic(TopicArn=TOPIC_ARN)
