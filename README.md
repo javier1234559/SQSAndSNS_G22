@@ -7,9 +7,9 @@
 - Đỗ Vũ Hưng    - 20110499
 - Định Quân  - 20110043
 
-Link ggdrive : https://drive.google.com/drive/folders/1BvBhw59NpnVoV3PGAxgstgiNPDPyS55w?usp=sharing
-Link báo cáo lần 1 : https://www.youtube.com/watch?v=CqBgWT6eD0A
-Link báo cáo lần 2 : https://www.youtube.com/watch?v=PzCaUAxxQvo
+> Link ggdrive : https://drive.google.com/drive/folders/1BvBhw59NpnVoV3PGAxgstgiNPDPyS55w?usp=sharing
+> Link báo cáo lần 1 : https://www.youtube.com/watch?v=CqBgWT6eD0A
+> Link báo cáo lần 2 : https://www.youtube.com/watch?v=PzCaUAxxQvo
 
 ## Deploy lên EC2
 Update máy chủ ubutu EC2
