@@ -37,7 +37,7 @@ sudo apt install git
 ```
 Clone repo về máy chủ EC2 vừa tạo
 ```
-git clone https://github.com/javier1234559/LightSail_G22.git
+git clone https://github.com/javier1234559/SQSAndSNS_G22.git
 ```
 Mở tường lửa cho port 5000
 
